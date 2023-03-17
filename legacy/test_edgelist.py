@@ -22,4 +22,4 @@ print(f"{percent_in_edges:.2f}% of artists in edge list")
 
 artists_in_edges_df = pd.DataFrame(list(artists_in_edges), columns=['Artist'])
 print(artists_in_edges_df.head())
-artists_in_edges_df.to_parquet('artists_in_edges.parquet')
+artists_in_edges_df.to_parquet('latest_artists_in_edges.parquet')

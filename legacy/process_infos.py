@@ -2,7 +2,7 @@ from fuzzywuzzy import fuzz
 import pandas as pd
 import re
 
-df = pd.read_parquet("artists_with_infos.parquet")
+df = pd.read_parquet("latest_artists_with_infos.parquet")
 
 def compute_similarity(s1, s2):
     if s1 is None or s2 is None:
@@ -21,7 +21,7 @@ df_filtered = df[df["Similarity"] > 93]
 
 print(num_similar)
 
-df_filtered.to_parquet("data_similarity_larger_than_93.parquet", index=False)
+df_filtered.to_parquet("latest_data_similarity_larger_than_93.parquet", index=False)
 
 df_filtered2 = pd.read_parquet("data_similarity_less_than_95.parquet")
 
@@ -46,4 +46,4 @@ df_filtered2.loc[:, "Artist2"] = df_filtered2.loc[:, "Artist"].apply(preprocess_
 df_filtered2.loc[:, "Spotify Name2"] = df_filtered2.loc[:, "Spotify Name"].apply(preprocess_string)
 df_filtered2["Similarity2"] = df_filtered2.apply(lambda row: compute_similarity(row["Artist"], row["Spotify Name"]), axis=1)
 
-df_filtered2.to_csv("data_similarity_less_than_95_filtered.csv", index=False)
+df_filtered2.to_csv("latest_data_similarity_less_than_95_filtered.csv", index=False)
