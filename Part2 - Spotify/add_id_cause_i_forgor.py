@@ -54,7 +54,7 @@ def get_artist_id(token, artist_name):
 token = get_token()
 
 
-df = pd.read_parquet("data_similarity_larger_than_93.parquet")
+df = pd.read_parquet("filtered_artists_with_infos.parquet")
 
 df["Spotify ID"] = None
 
@@ -71,4 +71,4 @@ with tqdm(total=len(df)) as pbar:
 
 df["Spotify ID"] = df["Spotify ID"].apply(lambda x: str(x).encode() if x is not None else None)
 # df.head(10)
-df.to_parquet("data_similarity_larger_than_93_with_id.parquet")
+df.to_parquet("filtered_artists_with_infos_with_id.parquet")
